@@ -3,6 +3,10 @@
     "appName": "LynkCo Manuals",
     "webDir": "www",
     "server": {
-        "androidScheme": "https"
+        "androidScheme": "https",
+        "allowNavigation": [
+            "*.lynkco.com.cn",
+            "*.lynkco.com"
+        ]
     }
 }
