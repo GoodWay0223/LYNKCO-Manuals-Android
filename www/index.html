@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>领克车主用车手册 - LYNK & CO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --lynkco-black: #0a0a0a;
+            --lynkco-dark: #111111;
+            --lynkco-gray: #1a1a1a;
+            --lynkco-silver: #c0c0c0;
+            --lynkco-blue: #0066ff;
+            --lynkco-blue-light: #3385ff;
+            --lynkco-white: #ffffff;
+            --lynkco-text-gray: #888888;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--lynkco-black);
+            color: var(--lynkco-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 40px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--lynkco-blue-light);
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--lynkco-blue);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--lynkco-white) 0%, var(--lynkco-blue-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--lynkco-text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Models Section */
+        .models-section {
+            padding: 20px 40px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .section-header h2 {
+            font-size: 12px;
+            color: var(--lynkco-blue-light);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .section-header h3 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--lynkco-white);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .car-card {
+            background: linear-gradient(145deg, var(--lynkco-gray) 0%, var(--lynkco-dark) 100%);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .car-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .car-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 102, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.15);
+        }
+
+        .car-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-image {
+            height: 220px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .card-image::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+        }
+
+        .car-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.4s ease;
+        }
+
+        .car-card:hover .car-image {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 6px 14px;
+            background: rgba(0, 102, 255, 0.9);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .card-content {
+            padding: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-model {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .card-series {
+            font-size: 13px;
+            color: var(--lynkco-blue-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--lynkco-text-gray);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-year {
+            font-size: 13px;
+            color: var(--lynkco-text-gray);
+            cursor: pointer;
+            position: relative;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .card-year:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--lynkco-white);
+        }
+
+        .year-selector {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 4px;
+            min-width: 100px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 100;
+            margin-bottom: 8px;
+        }
+
+        .year-selector.open {
+            display: block;
+        }
+
+        .year-option {
+            position: relative;
+            padding: 10px 16px;
+            font-size: 13px;
+            color: var(--lynkco-text-gray);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            margin: 0 4px;
+            border-radius: 6px;
+        }
+
+        .year-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--lynkco-white);
+        }
+
+        .year-option.active {
+            color: var(--lynkco-blue-light);
+            background: rgba(0, 102, 255, 0.2);
+            font-weight: 600;
+        }
+
+        .year-option.active::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 4px;
+            bottom: 4px;
+            width: 3px;
+            background: var(--lynkco-blue-light);
+            border-radius: 2px;
+        }
+
+        /* 第一个和最后一个选项的圆角适配 */
+        .year-option:first-child {
+            border-radius: 6px;
+            margin-top: 2px;
+        }
+
+        .year-option:last-child {
+            border-radius: 6px;
+            margin-bottom: 2px;
+        }
+
+        /* 多版型车型年份边框提示 */
+        .card-year.has-options {
+            border: 1px solid rgba(0, 102, 255, 0.4);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .card-year.has-options:hover {
+            border-color: rgba(0, 102, 255, 0.7);
+            background: rgba(0, 102, 255, 0.1);
+        }
+
+        .card-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--lynkco-white);
+            transition: all 0.3s ease;
+        }
+
+        .car-card:hover .card-action {
+            color: var(--lynkco-blue-light);
+            gap: 12px;
+        }
+
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .car-card:hover .arrow-icon {
+            transform: translateX(4px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--lynkco-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--lynkco-white) 0%, var(--lynkco-silver) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--lynkco-text-gray);
+            margin-bottom: 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--lynkco-text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--lynkco-white);
+        }
+
+        .footer-copyright {
+            font-size: 12px;
+            color: rgba(136, 136, 136, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 24px;
+                height: 70px;
+            }
+
+            .logo-text {
+                font-size: 20px;
+            }
+
+            .hero {
+                padding: 120px 24px 60px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .models-section {
+                padding: 40px 24px 80px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .section-header h3 {
+                font-size: 24px;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 16px 32px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .car-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .car-card:nth-child(1) { animation-delay: 0.1s; }
+        .car-card:nth-child(2) { animation-delay: 0.2s; }
+        .car-card:nth-child(3) { animation-delay: 0.3s; }
+        .car-card:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Engineering Mode Section */
+        .engineering-section {
+            padding: 60px 40px;
+            background: linear-gradient(180deg, var(--lynkco-black) 0%, #0d0d0d 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .engineering-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .engineering-header {
+            margin-bottom: 32px;
+        }
+
+        .engineering-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .engineering-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--lynkco-white);
+            margin-bottom: 8px;
+        }
+
+        .engineering-header p {
+            font-size: 14px;
+            color: var(--lynkco-text-gray);
+        }
+
+        .engineering-code {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 48px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
+            border: 2px solid rgba(0, 102, 255, 0.3);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            font-family: 'Inter', monospace;
+            box-shadow: 0 8px 32px rgba(0, 102, 255, 0.1);
+        }
+
+        .code-full {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--lynkco-blue);
+            font-family: 'Inter', monospace;
+            letter-spacing: 2px;
+        }
+
+        .engineering-time {
+            font-size: 13px;
+            color: var(--lynkco-text-gray);
+            margin-bottom: 20px;
+            font-family: 'Inter', monospace;
+        }
+
+        .engineering-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 100px;
+            font-size: 12px;
+            color: rgba(255, 193, 7, 0.9);
+        }
+
+        .engineering-hint svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* Chip Selector Styles */
+        .chip-selector {
+            background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .chip-selector-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .chip-selector-header:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .chip-info {
+            text-align: left;
+        }
+
+        .chip-label {
+            font-size: 12px;
+            color: var(--lynkco-text-gray);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chip-current {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--lynkco-cyan);
+            margin-bottom: 4px;
+        }
+
+        .chip-desc {
+            font-size: 12px;
+            color: rgba(136, 136, 136, 0.8);
+        }
+
+        .chip-arrow {
+            width: 20px;
+            height: 20px;
+            color: var(--lynkco-text-gray);
+            transition: transform 0.3s ease;
+        }
+
+        .chip-arrow.open {
+            transform: rotate(90deg);
+        }
+
+        .chip-options {
+            display: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .chip-options.open {
+            display: block;
+        }
+
+        .chip-option {
+            padding: 16px 24px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .chip-option:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .chip-option.active {
+            background: rgba(0, 255, 204, 0.05);
+            border-left-color: var(--lynkco-cyan);
+        }
+
+        .chip-option-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--lynkco-white);
+            margin-bottom: 4px;
+        }
+
+        .chip-option.active .chip-option-name {
+            color: var(--lynkco-cyan);
+        }
+
+        .chip-option-desc {
+            font-size: 12px;
+            color: var(--lynkco-text-gray);
+        }
+
+        @media (max-width: 768px) {
+            .engineering-section {
+                padding: 40px 24px;
+            }
+
+            .engineering-code {
+                padding: 20px 32px;
+            }
+
+            .code-prefix,
+            .code-number {
+                font-size: 28px;
+            }
+
+            .chip-selector-header {
+                padding: 16px 20px;
+            }
+
+            .chip-option {
+                padding: 14px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="https://www.lynkco.com.cn" target="_blank" class="logo">
+                <img src="https://dm30webimages.lynkco.com.cn/LynkCoPortal/media/0b74de4359d34f87a728d7d9f17971ae/2024-05-31/logo.png" alt="领克 LYNK & CO">
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">熊猫长得像钢琴</div>
+            <h1><span>用车手册</span> 集合</h1>
+            <p>探索您的领克座驾，获取详细的车辆使用指南、功能说明和操作手册，让每一次出行都尽在掌握。</p>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section class="models-section">
+        <div class="section-header">
+            <h2>Vehicle Manuals</h2>
+            <h3>选择您的车型</h3>
+        </div>
+
+        <div class="cards-grid">
+            <!-- 24款领克07 EM-P -->
+            <div class="car-card" data-car="07" data-default-link="https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79XEZ7RE000132&model=&src=app&selectedTab=1">
+                <div class="card-image">
+                    <img src="https://dm30webimages.lynkco.com.cn/LynkCoPortal/2025/0910/07/plus/CAR1.png" alt="领克 07 EM-P" class="car-image">
+                    <div class="card-badge">EM-P</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-model">领克 07 EM-P</div>
+                    <div class="card-series">豪华智享轿车</div>
+                    <div class="card-desc">B级新能源轿车，优雅低趴造型，满油满电CLTC续航超1400km。</div>
+                    <div class="card-footer">
+                        <div class="card-year" onclick="toggleYearSelector(event, '07')">
+                            <span id="year-07">2024款</span>
+                            <div class="year-selector" id="selector-07">
+                                <div class="year-option active" data-link="https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79XEZ7RE000132&model=&src=app&selectedTab=1" onclick="selectYear(event, '07', '2024款', this)">2024款</div>
+                            </div>
+                        </div>
+                        <div class="card-action" onclick="openManual('07')">
+                            查看手册
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 领克 08 -->
+            <div class="car-card" data-car="08" data-default-link="https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79XCZ0RE032956&model=&src=app&selectedTab=1">
+                <div class="card-image">
+                    <img src="https://dm30webimages.lynkco.com.cn/LynkCoPortal/2025/lynkcowebsite/new08/PC/cxts09091.png" alt="领克 08 EM-P" class="car-image">
+                    <div class="card-badge">EM-P</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-model">领克 08 EM-P</div>
+                    <div class="card-series">豪华智享SUV</div>
+                    <div class="card-desc">超级增程电动方案，智能四驱，豪华智享座舱，开启全新出行体验。</div>
+                    <div class="card-footer">
+                        <div class="card-year" onclick="toggleYearSelector(event, '08')">
+                            <span id="year-08">2024款</span>
+                            <div class="year-selector" id="selector-08">
+                                <div class="year-option active" data-link="https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79XCZ0RE032956&model=&src=app&selectedTab=1" onclick="selectYear(event, '08', '2024款', this)">2024款</div>
+                                <div class="year-option" data-link="https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79BAZ5SE010026&model=&src=app&selectedTab=1" onclick="selectYear(event, '08', '2026款', this)">2026款</div>
+                            </div>
+                        </div>
+                        <div class="card-action" onclick="openManual('08')">
+                            查看手册
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 领克10 EM-P -->
+            <div class="car-card" data-car="10" data-default-link="https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79DBD7SD157243&model=&src=app&selectedTab=1">
+                <div class="card-image">
+                    <img src="https://dm30webimages.lynkco.com.cn/LynkCoPortal/2025/10emp/0813/car.png" alt="领克 10 EM-P" class="car-image">
+                    <div class="card-badge">EM-P</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-model">领克 10 EM-P</div>
+                    <div class="card-series">新豪华智享旗舰轿车</div>
+                    <div class="card-desc">新豪华智享旗舰轿车，EM-P超级增程电动方案，智领未来出行。</div>
+                    <div class="card-footer">
+                        <div class="card-year" onclick="toggleYearSelector(event, '10')">
+                            <span id="year-10">2025款</span>
+                            <div class="year-selector" id="selector-10">
+                                <div class="year-option active" data-link="https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79DBD7SD157243&model=&src=app&selectedTab=1" onclick="selectYear(event, '10', '2025款', this)">2025款</div>
+                            </div>
+                        </div>
+                        <div class="card-action" onclick="openManual('10')">
+                            查看手册
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 领克 900 -->
+            <div class="car-card" data-car="900" data-default-link="https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79END6ST217911&model=&src=app&selectedTab=1">
+                <div class="card-image">
+                    <img src="https://dm30webimages.lynkco.com.cn/LynkCoPortal/2025/lynkcowebsite/900/0321/900car032490.png" alt="领克 900" class="car-image">
+                    <div class="card-badge">旗舰</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-model">领克 900</div>
+                    <div class="card-series">智享百变旗舰</div>
+                    <div class="card-desc">智享百变旗舰大六座SUV，豪华空间，智能科技，为家庭出行而生。</div>
+                    <div class="card-footer">
+                        <div class="card-year" onclick="toggleYearSelector(event, '900')">
+                            <span id="year-900">2025款</span>
+                            <div class="year-selector" id="selector-900">
+                                <div class="year-option active" data-link="https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79END6ST217911&model=&src=app&selectedTab=1" onclick="selectYear(event, '900', '2025款', this)">2025款</div>
+                            </div>
+                        </div>
+                        <div class="card-action" onclick="openManual('900')">
+                            查看手册
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 领克 03 -->
+            <div class="car-card" data-car="03" data-default-link="https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T7824Z1SZ530604&model=&src=app&selectedTab=1">
+                <div class="card-image">
+                    <img src="https://dm30webimages.lynkco.com.cn/LynkCoPortal/2025/lynkcowebsite/new03/pc/03car1014.png" alt="领克 03" class="car-image">
+                    <div class="card-badge">运动</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-model">领克 03</div>
+                    <div class="card-series">性能运动轿车</div>
+                    <div class="card-desc">领潮运动轿车，驭风设计，凌厉操控，点燃驾驶激情，尽享极致驾趣。</div>
+                    <div class="card-footer">
+                        <div class="card-year" onclick="toggleYearSelector(event, '03')">
+                            <span id="year-03">2025款</span>
+                            <div class="year-selector" id="selector-03">
+                                <div class="year-option active" data-link="https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T7824Z1SZ530604&model=&src=app&selectedTab=1" onclick="selectYear(event, '03', '2025款', this)">2025款</div>
+                            </div>
+                        </div>
+                        <div class="card-action" onclick="openManual('03')">
+                            查看手册
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engineering Mode Section -->
+    <section class="engineering-section">
+        <div class="engineering-container">
+            <div class="engineering-header">
+                <div class="engineering-icon">⚙️</div>
+                <h2>工程模式拨号码</h2>
+                <p>在车机拨号盘输入以下代码进入工程模式</p>
+            </div>
+
+            <!-- Chip Scheme Selector -->
+            <div class="chip-selector">
+                <div class="chip-selector-header" onclick="toggleChipSelector()">
+                    <div class="chip-info">
+                        <div class="chip-label">芯片方案</div>
+                        <div class="chip-current" id="currentChip">龙鹰一号 / AMD</div>
+                        <div class="chip-desc" id="currentChipDesc">适用于：老款08EMP, 老款07EMP, Z10等车型</div>
+                    </div>
+                    <svg class="chip-arrow" id="chipArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </div>
+                <div class="chip-options" id="chipOptions">
+                    <div class="chip-option active" data-chip="longying" onclick="selectChip('longying')">
+                        <div class="chip-option-name">龙鹰一号 / AMD</div>
+                        <div class="chip-option-desc">适用于：老款08EMP, 老款07EMP, Z10等车型</div>
+                    </div>
+                    <div class="chip-option" data-chip="osn-old" onclick="selectChip('osn-old')">
+                        <div class="chip-option-name">OSN - 01/03/05/星越L</div>
+                        <div class="chip-option-desc">适用于：23款01/03/05全系, 24款01, 25/26款03+, 21-23款星越L</div>
+                    </div>
+                    <div class="chip-option" data-chip="osn-09" onclick="selectChip('osn-09')">
+                        <div class="chip-option-name">OSN - 领克09</div>
+                        <div class="chip-option-desc">适用于：领克09全系</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="engineering-code" id="engineeringCode">
+                <span class="code-full" id="codeFull">#*--</span>
+            </div>
+            <div class="engineering-time" id="currentTime" style="display: none;">--</div>
+            <div class="engineering-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                <span id="hintText">代码基于当前时间自动生成</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">LYNK & CO</div>
+            <p class="footer-text">内容不断完善，添加中...</p>
+            <div class="footer-links">
+                <a href="https://docs.qq.com/aio/DT0RLekd6bEJDeUNn?p=FgO7EleKjQ4Cl3d4Y5CXTD" target="_blank">领克07&08车主共创计划</a>
+                <a href="https://www.xjl.asia/tools/car-gzs.html" target="_blank">熊猫汽车购置税计算器</a>
+                <a href="https://www.lynkco.com.cn" target="_blank">领克官网</a>
+            </div>
+            <p class="footer-copyright">© <span id="copyrightYear">2025</span> 熊猫长得像钢琴. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // 当前选中的芯片方案
+        let currentChipScheme = 'longying';
+
+        // 芯片方案配置（固定工程码）
+        const chipSchemes = {
+            longying: {
+                name: '龙鹰一号 / AMD',
+                desc: '适用于：老款08EMP, 老款07EMP, Z10等车型',
+                type: 'dynamic',
+                hint: '工程码基于当前时间自动生成，工程模式下所有操作存在的风险请自行承担，勿随意尝试'
+            },
+            'osn-old': {
+                name: 'OSN - 01/03/05/星越L',
+                desc: '适用于：23款01/03/05全系, 24款01, 25/26款03+, 21-23款星越L',
+                type: 'fixed',
+                code: '32279',
+                hint: '固定工程码，工程模式下所有操作存在的风险请自行承担，勿随意尝试'
+            },
+            'osn-09': {
+                name: 'OSN - 领克09',
+                desc: '适用于：领克09全系',
+                type: 'fixed',
+                code: '89757',
+                hint: '固定工程码，工程模式下所有操作存在的风险请自行承担，勿随意尝试'
+            }
+        };
+
+        // 切换芯片选择器展开/收起
+        function toggleChipSelector() {
+            const options = document.getElementById('chipOptions');
+            const arrow = document.getElementById('chipArrow');
+            options.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
+        // 选择芯片方案
+        function selectChip(chip) {
+            currentChipScheme = chip;
+            const scheme = chipSchemes[chip];
+            
+            // 更新显示
+            document.getElementById('currentChip').textContent = scheme.name;
+            document.getElementById('currentChipDesc').textContent = scheme.desc;
+            document.getElementById('hintText').textContent = scheme.hint;
+            
+            // 更新选项样式
+            document.querySelectorAll('.chip-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.chip === chip) {
+                    option.classList.add('active');
+                }
+            });
+            
+            // 收起选择器
+            toggleChipSelector();
+            
+            // 重新生成代码
+            updateEngineeringCode();
+        }
+
+        // 车型链接配置
+        const carLinks = {
+            '07': {
+                current: 'https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79XEZ7RE000132&model=&src=app&selectedTab=1',
+                years: {
+                    '2024款': 'https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79XEZ7RE000132&model=&src=app&selectedTab=1'
+                }
+            },
+            '08': {
+                current: 'https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79XCZ0RE032956&model=&src=app&selectedTab=1',
+                years: {
+                    '2024款': 'https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79XCZ0RE032956&model=&src=app&selectedTab=1',
+                    '2026款': 'https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79BAZ5SE010026&model=&src=app&selectedTab=1'
+                }
+            },
+            '10': {
+                current: 'https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79DBD7SD157243&model=&src=app&selectedTab=1',
+                years: {
+                    '2025款': 'https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79DBD7SD157243&model=&src=app&selectedTab=1'
+                }
+            },
+            '900': {
+                current: 'https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79END6ST217911&model=&src=app&selectedTab=1',
+                years: {
+                    '2025款': 'https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T79END6ST217911&model=&src=app&selectedTab=1'
+                }
+            },
+            '03': {
+                current: 'https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T7824Z1SZ530604&model=&src=app&selectedTab=1',
+                years: {
+                    '2025款': 'https://armanual.lynkco.com/om/LYNKCO/SPA-L/zh/home.jsp?vin=L6T7824Z1SZ530604&model=&src=app&selectedTab=1'
+                }
+            }
+        };
+
+        // 切换年份选择器
+        function toggleYearSelector(event, carId) {
+            event.stopPropagation();
+            
+            // 关闭所有其他选择器
+            document.querySelectorAll('.year-selector').forEach(selector => {
+                if (selector.id !== 'selector-' + carId) {
+                    selector.classList.remove('open');
+                }
+            });
+            
+            // 切换当前选择器
+            const selector = document.getElementById('selector-' + carId);
+            selector.classList.toggle('open');
+        }
+
+        // 选择年份
+        function selectYear(event, carId, year, element) {
+            event.stopPropagation();
+            
+            // 更新显示的年份
+            document.getElementById('year-' + carId).textContent = year;
+            
+            // 更新选中状态
+            const selector = document.getElementById('selector-' + carId);
+            selector.querySelectorAll('.year-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            // 更新当前链接
+            const link = element.getAttribute('data-link');
+            carLinks[carId].current = link;
+            
+            // 关闭选择器
+            selector.classList.remove('open');
+        }
+
+        // 打开手册
+        function openManual(carId) {
+            const link = carLinks[carId].current;
+            window.open(link, '_blank');
+        }
+
+        // 点击其他地方关闭年份选择器
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.card-year')) {
+                document.querySelectorAll('.year-selector').forEach(selector => {
+                    selector.classList.remove('open');
+                });
+            }
+        });
+
+        // 初始化：为多版型车型添加边框提示
+        function initYearSelectors() {
+            Object.keys(carLinks).forEach(carId => {
+                const yearCount = Object.keys(carLinks[carId].years).length;
+                const yearElement = document.querySelector(`[data-car="${carId}"] .card-year`);
+                if (yearElement && yearCount > 1) {
+                    yearElement.classList.add('has-options');
+                }
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initYearSelectors();
+            // 更新版权年份为当前年份
+            document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+        });
+
+        // 生成龙鹰一号动态码
+        // 格式：（月+5）+ 日 + 小时（12小时制，午夜显示0）
+        // 例如：2026年2月9日00:18 → 月=2+5=7, 日=9, 小时=0 → 790
+        // 例如：2025年12月31日10:50 → 月=12+5=17, 日=31, 小时=10 → 173110
+        function generateLongyingCode(now) {
+            let month = now.getMonth() + 1; // 1-12
+            const date = now.getDate(); // 1-31
+            let hours = now.getHours(); // 0-23
+            
+            // 月份 + 5
+            month = month + 5;
+            
+            // 12小时制，午夜0点显示为0
+            if (hours > 12) {
+                hours = hours - 12;
+            } else if (hours === 0) {
+                hours = 0; // 午夜显示0
+            }
+            
+            // 拼接为字符串：（月+5）+ 日 + 小时
+            return month.toString() + date.toString() + hours.toString();
+        }
+
+        // 工程模式拨号码显示
+        function updateEngineeringCode() {
+            const now = new Date();
+            const scheme = chipSchemes[currentChipScheme];
+            
+            let code;
+            if (scheme.type === 'dynamic') {
+                // 动态码：龙鹰一号
+                code = generateLongyingCode(now);
+            } else {
+                // 固定码
+                code = scheme.code;
+            }
+            
+            // 更新显示
+            document.getElementById('codeFull').textContent = '#*' + code;
+            
+            // 更新时间显示（仅动态码显示）
+            const timeDisplay = document.getElementById('currentTime');
+            
+            if (scheme.type === 'dynamic') {
+                // 动态码：显示时间
+                const timeString = now.toLocaleString('zh-CN', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                });
+                timeDisplay.textContent = '当前时间：' + timeString;
+                timeDisplay.style.display = 'block';
+            } else {
+                // 固定码：隐藏时间显示
+                timeDisplay.style.display = 'none';
+            }
+        }
+        
+        // 初始化并定时更新
+        updateEngineeringCode();
+        setInterval(updateEngineeringCode, 60000); // 每分钟更新一次
+    </script>
+</body>
+</html>
